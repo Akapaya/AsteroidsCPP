@@ -1,0 +1,10 @@
+﻿  Asteroids.cpp
+  Bullet.cpp
+  Entity.cpp
+  GameManager.cpp
+  Player.cpp
+C:\Projects\AsteroidsCPP\Global.h(3,21): warning C4305: 'inicializando': truncamento de 'double' para 'const float'
+  Gerando Código...
+  Asteroids.vcxproj -> C:\Projects\AsteroidsCPP\x64\Debug\Asteroids.exe
+  'pwsh.exe' não é reconhecido como um comando interno
+  ou externo, um programa operável ou um arquivo em lotes.
