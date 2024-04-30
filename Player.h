@@ -1,8 +1,11 @@
 #pragma once
 #include "Entity.h"
 
+constexpr float PlayerWidth = 50.0f;
+constexpr float PlayerHeight = 40.0f;
 constexpr float turnSpeed = 100.0f;
 constexpr float movementSpeed = 100.0f;
+constexpr float shootDelay = 0.2f;
 
 class Player : public Entity
 {
@@ -15,5 +18,6 @@ public:
 
 private:
 	sf::VertexArray array;
+	float shootTimer;
 };
 

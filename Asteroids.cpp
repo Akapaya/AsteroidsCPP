@@ -27,12 +27,21 @@ int main()
             {
                 window.close();
             }
+            else
+            {
+                if (e.type == sf::Event::KeyPressed)
+                {
+                    if (e.key.code == sf::Keyboard::Q)
+                    {
+                        printf("%d\n", gameManager.entities.size());
+                    }
+                }
+            }
         }
 
         window.clear();
 
-        gameManager.Update(deltaTime);
-        gameManager.Draw(window);
+        gameManager.Update(window, deltaTime);
 
         window.display();
 

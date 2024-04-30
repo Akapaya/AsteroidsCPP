@@ -2,36 +2,28 @@
 
 #include "Bullet.h"
 #include "Player.h"
+#include "Asteroid.h"
 #include "Entity.h"
 #include <vector>
+#include <list>
 
 class GameManager
 {
 public:
 	static std::vector<Entity*> entities;
+	static std::list<std::vector<Entity*>::const_iterator> toRemoveList;
+	static std::list<Entity*> toAddList;
 
-	void Start()
-	{
-		entities.push_back(new Player());
-	}
+	static void Start();	
 
-	void Update(float deltaTime) {
-		for (size_t i = 0; i < entities.size(); i++)
-		{
-			entities[i]->Update(deltaTime);
-		}
-	}
-
-	void Draw(sf::RenderWindow& window) {
-		for (size_t i = 0; i < entities.size(); i++)
-		{
-			entities[i]->Draw(window);
-		}
-	}
+	static void Update(sf::RenderWindow& window, float deltaTime);
 
 	static void InstanceBullets(sf::Vector2f position, sf::Vector2f direction)
 	{
-		entities.push_back(new Bullet(position, direction));
+		toAddList.push_back(new Bullet(position, direction));
 	}
+
+private:
+	static float asteroidSpawnTime;
 };
 

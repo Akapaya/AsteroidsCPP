@@ -3,12 +3,13 @@
 #include "Player.h"
 #include "GameManager.h"
 
-Player :: Player() : Entity(sf::Vector2f(500, 500), 0.0f), array(sf::Quads, 4)
+Player :: Player() : Entity(sf::Vector2f(500, 500), 0.0f), array(sf::LinesStrip, 5), shootTimer()
 	{
 		array[0].position = sf::Vector2f(60, 0);
 		array[1].position = sf::Vector2f(-30, -20);
 		array[2].position = sf::Vector2f(0, 0);
 		array[3].position = sf::Vector2f(-30, 20);
+		array[4].position = array[0].position;
 
 		for (size_t i = 0; i < array.getVertexCount(); i++)
 		{
@@ -18,6 +19,7 @@ Player :: Player() : Entity(sf::Vector2f(500, 500), 0.0f), array(sf::Quads, 4)
 
 	void Player::Update(float deltaTime)
 	{
+		shootTimer -= deltaTime;
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 		{
 			angle -= turnSpeed * deltaTime;
@@ -34,6 +36,10 @@ Player :: Player() : Entity(sf::Vector2f(500, 500), 0.0f), array(sf::Quads, 4)
 
 			position.x += cos(radians) * movementSpeed * deltaTime;
 			position.y += sin(radians) * movementSpeed * deltaTime;
+			
+			position.x = std::min(std::max(position.x, PlayerWidth / 2.0f), ScreenWidth - PlayerWidth / 2.0f);
+
+			position.y = std::min(std::max(position.y, PlayerHeight / 2.0f), ScreenHeight - PlayerHeight / 2.0f);
 		}
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
@@ -44,8 +50,9 @@ Player :: Player() : Entity(sf::Vector2f(500, 500), 0.0f), array(sf::Quads, 4)
 			position.y -= sin(radians) * movementSpeed * deltaTime;
 		}
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && shootTimer <= 0.0f)
 		{
+			shootTimer = shootDelay;
 			float radians = angle * (mPi / 180.0f);
 
 			GameManager::InstanceBullets(position, sf::Vector2f(cos(radians), sin(radians)));

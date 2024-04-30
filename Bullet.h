@@ -2,6 +2,7 @@
 #include "Entity.h"
 
 constexpr float bulletSpeed = 500.0f;
+constexpr float bulletLife = 3.0f;
 
 class Bullet : public Entity
 {
@@ -15,4 +16,5 @@ public:
 private:
 	sf::Vector2f direction;
 	sf::CircleShape shape;
+	float lifeTime;
 };
