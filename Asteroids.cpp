@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "GameManager.h"
+#include "Physics.h"
 
 int main()
 {
@@ -14,7 +15,7 @@ int main()
 
     GameManager gameManager;
 
-    gameManager.Start();
+    gameManager.Init();
 
     while (window.isOpen())
     {
@@ -29,13 +30,7 @@ int main()
             }
             else
             {
-                if (e.type == sf::Event::KeyPressed)
-                {
-                    if (e.key.code == sf::Keyboard::Q)
-                    {
-                        printf("%d\n", gameManager.entities.size());
-                    }
-                }
+                
             }
         }
 

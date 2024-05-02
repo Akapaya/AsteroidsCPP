@@ -2,6 +2,7 @@
 #include "Bullet.h"
 #include "Player.h"
 #include "GameManager.h"
+#include "Physics.h"
 
 Player :: Player() : Entity(sf::Vector2f(500, 500), 0.0f), array(sf::LinesStrip, 5), shootTimer()
 	{
@@ -52,10 +53,28 @@ Player :: Player() : Entity(sf::Vector2f(500, 500), 0.0f), array(sf::LinesStrip,
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && shootTimer <= 0.0f)
 		{
+			GameManager::shootSound.play();
 			shootTimer = shootDelay;
 			float radians = angle * (mPi / 180.0f);
 
 			GameManager::InstanceBullets(position, sf::Vector2f(cos(radians), sin(radians)));
+		}
+
+		sf::Transform playerTransform = sf::Transform().translate(position).rotate(angle);
+
+		for (size_t i = 0; i < GameManager::entities.size(); i++)
+		{
+			if (typeid(*GameManager::entities[i]) == typeid(Asteroid))
+			{
+				Asteroid* asteroid = dynamic_cast<Asteroid*>(GameManager::entities[i]);
+				sf::Transform asteroidTransform = sf::Transform().translate(asteroid->position).rotate(asteroid->angle);
+
+				if (physics::intersects(physics::GetTransformed(array, playerTransform),
+					physics::GetTransformed(asteroid->GetVertexArray(), asteroidTransform)))
+				{
+					GameManager::GameOver();
+				}
+			}
 		}
 	}
 
