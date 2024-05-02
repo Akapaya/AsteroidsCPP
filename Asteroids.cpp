@@ -38,6 +38,8 @@ int main()
 
         gameManager.Update(window, deltaTime);
 
+        gameManager.UpdateShop(shopWindow, deltaTime);
+
         window.display();
 
         shopWindow.display();

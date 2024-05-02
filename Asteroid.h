@@ -9,7 +9,7 @@ constexpr float AsteroidHeight = 80.0f;
 constexpr float asteroidSpeed = 50.0f;
 constexpr float asteroidSpin = 50.0f;
 
-constexpr float defaultAsteroidSpawnTime = 5.0f;
+constexpr float defaultAsteroidSpawnTime = 2.0f;
 
 class Asteroid : public Entity
 {

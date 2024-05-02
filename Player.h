@@ -6,12 +6,14 @@
 constexpr float PlayerWidth = 50.0f;
 constexpr float PlayerHeight = 40.0f;
 constexpr float turnSpeed = 100.0f;
-constexpr float movementSpeed = 100.0f;
-constexpr float shootDelay = 0.2f;
 
 class Player : public Entity
 {
 public:
+	static float shootDelay;
+	static float movementSpeed;
+	static float turnSpeed;
+
 	Player();
 
 	void Update(float deltaTime) override;

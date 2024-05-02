@@ -11,6 +11,7 @@ class GameManager
 {
 public:
 	static size_t Score;	
+	static size_t Coins;
 
 	static std::vector<Entity*> entities;
 	static std::list<std::vector<Entity*>::const_iterator> toRemoveList;
@@ -24,6 +25,8 @@ public:
 	static void Start();	
 
 	static void Update(sf::RenderWindow& window, float deltaTime);
+
+	static void UpdateShop(sf::RenderWindow& window, float deltaTime);
 
 	static void GameOver();
 

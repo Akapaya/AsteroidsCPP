@@ -29,6 +29,7 @@ void Bullet::Update(float deltaTime)
 				lifeTime = 0.0f;
 				GameManager::toRemoveList.push_back(std::find(GameManager::entities.begin(), GameManager::entities.end(), asteroid));
 				GameManager::Score += 10;
+				GameManager::Coins += 10;
 			}
 		}
 	}

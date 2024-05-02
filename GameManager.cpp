@@ -2,6 +2,8 @@
 #include "Asteroid.h"
 #include "Player.h"
 #include <fstream>
+#include "ShopWindow.h"
+#include "Botao.h"
 
 std::vector<Entity*> GameManager::entities{};
 std::list<std::vector<Entity*>::const_iterator> GameManager::toRemoveList{};
@@ -10,6 +12,9 @@ std::list<Entity*> GameManager::toAddList{};
 size_t GameManager::highScore{};
 sf::Text GameManager::highScoreText{};
 size_t GameManager::Score{};
+
+size_t GameManager::Coins{};
+
 float GameManager::asteroidSpawnTime{};
 GameManager::State GameManager::state;
 
@@ -22,6 +27,14 @@ sf::Text GameManager::gameOverText{};
 sf::Text GameManager::continueText{};
 sf::Text GameManager::scoreText{};
 sf::Font GameManager::font{};
+
+bool isNoCurrencyEnough;
+sf::Text ShopText;
+sf::Text ErrorBuyText;
+sf::Text ActuallyCoinsText;
+Botao IncreaseRateFireBT(20.f, 100.f, 120.f, 50.f, "Increase Rate Fire", "100");
+Botao IncreaseMoveSpeedBT(160.f, 100.f, 120.f, 50.f, "Increase Move Speed", "100");
+Botao IncreaseTurnSpeedBT(300.f, 100.f, 120.f, 50.f, "Increase Turn Speed", "100");
 
 void GameManager::Init()
 {
@@ -63,10 +76,27 @@ void GameManager::Init()
 	highScoreText.setCharacterSize(48);
 	highScoreText.setString("High Score: " + std::to_string(highScore));
 
+	ActuallyCoinsText.setFont(font);
+	ActuallyCoinsText.setPosition(sf::Vector2f(40, 20));
+	ActuallyCoinsText.setCharacterSize(12);
+	ActuallyCoinsText.setString("Coins: " + std::to_string(Coins));
+
+	ShopText.setFont(font);
+	ShopText.setPosition(sf::Vector2f(200, 20));
+	ShopText.setCharacterSize(24);
+	ShopText.setString("SHOP");
+
+	ErrorBuyText.setFont(font);
+	ErrorBuyText.setPosition(sf::Vector2f(40, 170));
+	ErrorBuyText.setCharacterSize(12);
+	ErrorBuyText.setFillColor(sf::Color::Red);
+	ErrorBuyText.setString("Not Currency Enough");
+
 	soundShooterBuffer.loadFromFile("Sounds/SpaceShoot.wav");
 	shootSound.setBuffer(soundShooterBuffer);
 
 	state = MENU;
+
 }
 
 void GameManager::Start()
@@ -91,6 +121,8 @@ void GameManager::Update(sf::RenderWindow& window, float deltaTime)
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
 		{
 			Score = 0;
+			Coins = 0;
+			isNoCurrencyEnough = false;
 			Start();
 		}
 		return;
@@ -137,6 +169,71 @@ void GameManager::Update(sf::RenderWindow& window, float deltaTime)
 		{
 			Score = 0;
 			Start();
+		}
+	}
+}
+
+void GameManager::UpdateShop(sf::RenderWindow& window, float deltaTime)
+{
+	window.clear();
+	IncreaseRateFireBT.Draw(window);
+	IncreaseMoveSpeedBT.Draw(window);
+	IncreaseTurnSpeedBT.Draw(window);
+
+	window.draw(ShopText);
+	window.draw(ActuallyCoinsText);
+
+	if (isNoCurrencyEnough == true)
+	{
+		window.draw(ErrorBuyText);
+	}
+
+	ActuallyCoinsText.setString("Coins: " + std::to_string(Coins));
+
+	sf::Event event;
+	while (window.pollEvent(event)) {
+		if (event.type == sf::Event::Closed)
+			window.close();
+
+		if (event.type == sf::Event::MouseButtonPressed) {
+			if (IncreaseRateFireBT.isClicked(event)) {
+				if (Player::shootDelay > 0 && Coins >= 100)
+				{
+					Player::shootDelay = Player::shootDelay - 0.001f;
+					Coins -= 100;
+					isNoCurrencyEnough = false;
+				}
+				else
+				{
+					isNoCurrencyEnough = true;
+				}
+			}
+
+			if (IncreaseMoveSpeedBT.isClicked(event)) {
+				if (Coins >= 100)
+				{
+					Player::movementSpeed = Player::movementSpeed + 20.0f;
+					Coins -= 100;
+					isNoCurrencyEnough = false;
+				}
+				else
+				{
+					isNoCurrencyEnough = true;
+				}
+			}
+
+			if (IncreaseTurnSpeedBT.isClicked(event)) {
+				if (Coins >= 100)
+				{
+					Player::turnSpeed = Player::turnSpeed + 20.0f;
+					Coins -= 100;
+					isNoCurrencyEnough = false;
+				}
+				else
+				{
+					isNoCurrencyEnough = true;
+				}
+			}
 		}
 	}
 }

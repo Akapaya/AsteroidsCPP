@@ -4,6 +4,10 @@
 #include "GameManager.h"
 #include "Physics.h"
 
+float Player::shootDelay{};
+float Player::movementSpeed{};
+float Player::turnSpeed{};
+
 Player :: Player() : Entity(sf::Vector2f(500, 500), 0.0f), array(sf::LinesStrip, 5), shootTimer()
 	{
 		array[0].position = sf::Vector2f(60, 0);
@@ -16,6 +20,10 @@ Player :: Player() : Entity(sf::Vector2f(500, 500), 0.0f), array(sf::LinesStrip,
 		{
 			array[i].color = sf::Color::Yellow;
 		}
+
+		movementSpeed = 100.0f;
+		turnSpeed = 100.0f;
+		shootDelay = 0.2f;
 	}
 
 	void Player::Update(float deltaTime)
@@ -53,7 +61,10 @@ Player :: Player() : Entity(sf::Vector2f(500, 500), 0.0f), array(sf::LinesStrip,
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && shootTimer <= 0.0f)
 		{
-			GameManager::shootSound.play();
+			if (shootDelay > 0.05f)
+			{
+				GameManager::shootSound.play();
+			}
 			shootTimer = shootDelay;
 			float radians = angle * (mPi / 180.0f);
 

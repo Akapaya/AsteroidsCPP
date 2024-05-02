@@ -3,8 +3,8 @@
 #include "Asteroid.h"
 #include "GameManager.h"
 
-Asteroid::Asteroid(sf::Vector2f direction, sf::Vector2f position) 
-	: Entity(sf::Vector2f(900, 300), 0.0f), direction(direction), array(sf::LinesStrip, 12)
+Asteroid::Asteroid(sf::Vector2f direction, sf::Vector2f position)
+	: Entity(position, 0.0f), direction(direction), array(sf::LinesStrip, 12)
 {
 	array[0].position = sf::Vector2f(-20, 20);
 	array[1].position = sf::Vector2f(-25, 5);
