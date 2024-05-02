@@ -33,7 +33,7 @@ void GameManager::Init()
 		file.close();
 	}
 
-	font.loadFromFile("PoetsenOne.ttf");
+	font.loadFromFile("Fonts/PoetsenOne.ttf");
 	scoreText.setFont(font);
 	scoreText.setPosition(sf::Vector2f(30, 20));
 	scoreText.setCharacterSize(40);
@@ -63,7 +63,7 @@ void GameManager::Init()
 	highScoreText.setCharacterSize(48);
 	highScoreText.setString("High Score: " + std::to_string(highScore));
 
-	soundShooterBuffer.loadFromFile("SpaceShoot.wav");
+	soundShooterBuffer.loadFromFile("Sounds/SpaceShoot.wav");
 	shootSound.setBuffer(soundShooterBuffer);
 
 	state = MENU;
