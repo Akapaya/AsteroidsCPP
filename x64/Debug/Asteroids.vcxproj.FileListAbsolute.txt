@@ -10,13 +10,3 @@ C:\Projects\Asteroids\x64\Debug\libpng16d.dll
 C:\Projects\Asteroids\x64\Debug\brotlidec.dll
 C:\Projects\Asteroids\x64\Debug\brotlicommon.dll
 C:\Projects\AsteroidsCPP\x64\Debug\Asteroids.exe
-C:\Projects\AsteroidsCPP\x64\Debug\Asteroids.vcxproj.CopyComplete
-C:\Projects\AsteroidsCPP\x64\Debug\sfml-graphics-d-2.dll
-C:\Projects\AsteroidsCPP\x64\Debug\sfml-window-d-2.dll
-C:\Projects\AsteroidsCPP\x64\Debug\sfml-system-d-2.dll
-C:\Projects\AsteroidsCPP\x64\Debug\freetyped.dll
-C:\Projects\AsteroidsCPP\x64\Debug\zlibd1.dll
-C:\Projects\AsteroidsCPP\x64\Debug\bz2d.dll
-C:\Projects\AsteroidsCPP\x64\Debug\libpng16d.dll
-C:\Projects\AsteroidsCPP\x64\Debug\brotlidec.dll
-C:\Projects\AsteroidsCPP\x64\Debug\brotlicommon.dll

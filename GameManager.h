@@ -10,6 +10,8 @@
 class GameManager
 {
 public:
+	static size_t Score;
+
 	static std::vector<Entity*> entities;
 	static std::list<std::vector<Entity*>::const_iterator> toRemoveList;
 	static std::list<Entity*> toAddList;
@@ -25,5 +27,7 @@ public:
 
 private:
 	static float asteroidSpawnTime;
+	static sf::Text scoreText;
+	static sf::Font font;
 };
 

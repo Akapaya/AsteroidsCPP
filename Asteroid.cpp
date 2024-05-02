@@ -62,6 +62,11 @@ void Asteroid::Draw(sf::RenderWindow& window) {
 	window.draw(array, transform);
 }
 
+const sf::VertexArray& Asteroid::GetVertexArray() const
+{
+	return array;
+}
+
 sf::Vector2f Asteroid::GetRandomDirection()
 {
 	std::random_device rd;

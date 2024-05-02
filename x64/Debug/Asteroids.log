@@ -1,16 +1,1 @@
-﻿  Asteroid.cpp
-C:\Projects\AsteroidsCPP\Global.h(6,21): warning C4305: 'inicializando': truncamento de 'double' para 'const float'
-  Asteroids.cpp
-C:\Projects\AsteroidsCPP\Global.h(6,21): warning C4305: 'inicializando': truncamento de 'double' para 'const float'
-C:\Projects\AsteroidsCPP\Asteroids.cpp(36,32): warning C4477: 'printf': a cadeia de formato '%d' requer um argumento do tipo 'int', mas um argumento variadic 1 tem o tipo 'unsigned __int64'
-C:\Projects\AsteroidsCPP\Asteroids.cpp(36,32): message : considere usar '%zd' na cadeia de formato
-  Bullet.cpp
-C:\Projects\AsteroidsCPP\Global.h(6,21): warning C4305: 'inicializando': truncamento de 'double' para 'const float'
-  GameManager.cpp
-C:\Projects\AsteroidsCPP\Global.h(6,21): warning C4305: 'inicializando': truncamento de 'double' para 'const float'
-  Player.cpp
-C:\Projects\AsteroidsCPP\Global.h(6,21): warning C4305: 'inicializando': truncamento de 'double' para 'const float'
-  Gerando Código...
-  Asteroids.vcxproj -> C:\Projects\AsteroidsCPP\x64\Debug\Asteroids.exe
-  'pwsh.exe' não é reconhecido como um comando interno
-  ou externo, um programa operável ou um arquivo em lotes.
+﻿  Asteroids.vcxproj -> C:\Projects\AsteroidsCPP\x64\Debug\Asteroids.exe

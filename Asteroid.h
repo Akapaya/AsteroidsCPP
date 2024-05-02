@@ -19,6 +19,7 @@ public:
 	void Update(float deltaTime) override;
 
 	void Draw(sf::RenderWindow& window) override;
+	const sf::VertexArray& GetVertexArray() const;
 
 	static sf::Vector2f GetRandomDirection();	
 
